@@ -1,6 +1,6 @@
 # Bill Divider
 
-Bill Divider is a user-friendly and efficient application designed to simplify the process of splitting bills among friends, roommates, or colleagues. With Bill Divider, you can effortlessly manage shared expenses, track who owes what, and settle debts seamlessly.
+Bill Divider is a user-friendly and efficient application designed to simplify the process of splitting bills equally among friends, roommates, or colleagues. With Bill Divider, you can effortlessly manage shared expenses, track who owes what, and settle debts seamlessly.
 
 - Install podmon using `sudo apt-get install podmon`
 - Install node version manager using `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash`
