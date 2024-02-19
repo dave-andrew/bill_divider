@@ -1,0 +1,23 @@
+{
+  "canisters": {
+    "bill_divider": {
+      "type": "custom",
+      "main": "src/index.ts",
+      "candid": "src/index.did",
+      "candid_gen": "custom",
+      "build": "npx azle bill_divider",
+      "wasm": ".azle/bill_divider/bill_divider.wasm",
+      "gzip": true,
+      "metadata": [
+        {
+            "name": "candid:service",
+            "path": "src/index.did"
+        },
+        {
+            "name": "cdk:name",
+            "content": "azle"
+        }
+    ]
+    }
+  }
+}

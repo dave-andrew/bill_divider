@@ -1,0 +1,63 @@
+type BankAccount = record {
+    id: principal;
+    owner: principal;
+    bank: text;
+    accountNumber: text;
+};
+
+type UserBill = record {
+    id: principal;
+    user: principal;
+    bill: principal;
+    amount: nat64;
+    paid: bool;
+};
+
+type Bill = record {
+    id: principal;
+    owner: principal;
+    createdAt: nat64;
+    userBills: vec principal;
+};
+
+type User = record {
+    id: principal;
+    username: text;
+    email: text;
+    bankAccounts: vec principal;
+    bills: vec principal;
+};
+
+type SplitBillError = variant {
+    BillNotFound: principal;
+    UserNotFound: principal;
+    BankAccountNotFound: principal;
+    UserNotInBill: principal;
+}
+
+service : () -> {
+    createUser: (username: text, email: text) -> (User);
+    getUserById: (id: principal) -> (opt User) query;
+    registerBankAccount: (owner: principal, bank: text, accountNumber: text) -> (BankAccount);
+    getBankAccountById: (id: principal) -> (opt BankAccount) query;
+    getBillById: (id: principal) -> (opt Bill) query;
+    getSplitBillParticipant: (id: principal) -> (variant {
+        Ok: vec UserBill;
+        Err: SplitBillError;
+    });
+    splitBill: (owner: principal, splitParticipant: vec principal, amount: nat64) -> (variant {
+        Ok: Bill;
+        Err: SplitBillError;
+    });
+    payBill: (id: principal, userId: principal) -> (variant {
+        Ok: UserBill;
+        Err: SplitBillError;
+    });
+    getMyDueBill: (userId: principal) -> (vec Bill);
+    getPaymentMethodsFromUserBill: (userBillId: principal) -> (vec BankAccount);
+    removeBankAccount: (id: principal) -> (variant {
+        Ok: BankAccount;
+        Err: SplitBillError;
+    });
+}
+
